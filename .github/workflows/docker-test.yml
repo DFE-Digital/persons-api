@@ -1,0 +1,49 @@
+name: Docker
+
+on:
+  push:
+    branches: main
+
+jobs:
+  scan:
+    name: Scan for CVEs
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.build.outputs.imageid }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build docker image
+        uses: docker/build-push-action@v6
+        id: build
+        with:
+          secrets: github_token=${{ secrets.GITHUB_TOKEN }}
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha
+          build-args: CI=true
+          push: false
+
+      - name: Export docker image as tar
+        run: docker save -o ${{ steps.build.outputs.imageid }}.tar ${{ steps.build.outputs.imageid }}
+
+      - name: Scan Docker image for CVEs
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          input: ${{ steps.build.outputs.imageid }}.tar
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          limit-severities-for-sarif: true
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload scan results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
