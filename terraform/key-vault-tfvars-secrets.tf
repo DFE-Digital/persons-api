@@ -3,7 +3,7 @@ module "azurerm_key_vault" {
 
   environment                             = local.environment
   project_name                            = local.project_name
-  existing_resource_group                 = module.azure_container_apps_hosting.azurerm_resource_group_default.name
+  existing_resource_group                 = local.existing_resource_group
   azure_location                          = local.azure_location
   key_vault_access_use_rbac_authorization = true
   key_vault_access_users                  = []
@@ -12,4 +12,6 @@ module "azurerm_key_vault" {
   diagnostic_log_analytics_workspace_id   = module.azure_container_apps_hosting.azurerm_log_analytics_workspace_container_app.id
   diagnostic_eventhub_name                = local.enable_event_hub ? module.azure_container_apps_hosting.azurerm_eventhub_container_app.name : ""
   tags                                    = local.tags
+
+  depends_on = [module.azure_container_apps_hosting]
 }

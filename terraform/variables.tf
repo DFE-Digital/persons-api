@@ -49,14 +49,10 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "virtual_network_address_space" {
-  description = "Virtual network address space CIDR"
-  type        = string
-}
-
 variable "enable_container_registry" {
   description = "Set to true to create a container registry"
   type        = bool
+  default     = false
 }
 
 variable "registry_admin_enabled" {
@@ -85,6 +81,11 @@ variable "registry_managed_identity_assign_role" {
 
 variable "image_name" {
   description = "Image name"
+  type        = string
+}
+
+variable "image_tag" {
+  description = "Image tag"
   type        = string
 }
 
@@ -244,16 +245,6 @@ variable "existing_logic_app_workflow" {
   }
 }
 
-variable "existing_network_watcher_name" {
-  description = "Use an existing network watcher to add flow logs."
-  type        = string
-}
-
-variable "existing_network_watcher_resource_group_name" {
-  description = "Existing network watcher resource group."
-  type        = string
-}
-
 variable "enable_event_hub" {
   description = "Send Azure Container App logs to an Event Hub sink"
   type        = bool
@@ -325,66 +316,62 @@ variable "cdn_frontdoor_waf_custom_rules" {
   default = {}
 }
 
-variable "custom_container_apps" {
-  description = "Custom container apps, by default deployed within the container app environment managed by this module."
-  type = map(object({
-    container_app_environment_id = optional(string, "")
-    resource_group_name          = optional(string, "")
-    revision_mode                = optional(string, "Single")
-    container_port               = optional(number, 0)
-    ingress = optional(object({
-      external_enabled = optional(bool, true)
-      target_port      = optional(number, null)
-      traffic_weight = object({
-        percentage = optional(number, 100)
-      })
-      cdn_frontdoor_custom_domain                = optional(string, "")
-      cdn_frontdoor_origin_fqdn_override         = optional(string, "")
-      cdn_frontdoor_origin_host_header_override  = optional(string, "")
-      enable_cdn_frontdoor_health_probe          = optional(bool, false)
-      cdn_frontdoor_health_probe_protocol        = optional(string, "")
-      cdn_frontdoor_health_probe_interval        = optional(number, 120)
-      cdn_frontdoor_health_probe_request_type    = optional(string, "")
-      cdn_frontdoor_health_probe_path            = optional(string, "")
-      cdn_frontdoor_forwarding_protocol_override = optional(string, "")
-    }), null)
-    identity = optional(list(object({
-      type         = string
-      identity_ids = list(string)
-    })), [])
-    secrets = optional(list(object({
-      name  = string
-      value = string
-    })), [])
-    registry = optional(object({
-      server               = optional(string, "")
-      username             = optional(string, "")
-      password_secret_name = optional(string, "")
-      identity             = optional(string, "")
-    }), null),
-    image   = string
-    cpu     = number
-    memory  = number
-    command = list(string)
-    liveness_probes = optional(list(object({
-      interval_seconds = number
-      transport        = string
-      port             = number
-      path             = optional(string, null)
-    })), [])
-    env = optional(list(object({
-      name      = string
-      value     = optional(string, null)
-      secretRef = optional(string, null)
-    })), [])
-    min_replicas = number
-    max_replicas = number
-  }))
-  default = {}
-}
-
 variable "container_min_replicas" {
   description = "Container min replicas"
   type        = number
   default     = 1
+}
+
+variable "enable_health_insights_api" {
+  description = "Deploys a Function App that exposes the last 3 HTTP Web Tests via an API endpoint. 'enable_app_insights_integration' and 'enable_monitoring' must be set to 'true'."
+  type        = bool
+  default     = false
+}
+
+variable "health_insights_api_cors_origins" {
+  description = "List of hostnames that are permitted to contact the Health insights API"
+  type        = list(string)
+  default     = ["*"]
+}
+
+variable "health_insights_api_ipv4_allow_list" {
+  description = "List of IPv4 addresses that are permitted to contact the Health insights API"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_cdn_frontdoor_vdp_redirects" {
+  description = "Deploy redirects for security.txt and thanks.txt to an external Vulnerability Disclosure Program service"
+  type        = bool
+  default     = true
+}
+
+variable "cdn_frontdoor_vdp_destination_hostname" {
+  description = "Requires 'enable_cdn_frontdoor_vdp_redirects' to be set to 'true'. Hostname to redirect security.txt and thanks.txt to"
+  type        = string
+  default     = "vdp.security.education.gov.uk"
+}
+
+variable "container_port" {
+  description = "Container port"
+  type        = number
+  default     = 8080
+}
+
+variable "existing_container_app_environment" {
+  description = "Conditionally launch resources into an existing Container App environment. Specifying this will NOT create an environment."
+  type = object({
+    name           = string
+    resource_group = string
+  })
+}
+
+variable "existing_virtual_network" {
+  description = "Conditionally use an existing virtual network. The `virtual_network_address_space` must match an existing address space in the VNet. This also requires the resource group name."
+  type        = string
+}
+
+variable "existing_resource_group" {
+  description = "Conditionally launch resources into an existing resource group. Specifying this will NOT create a resource group."
+  type        = string
 }
