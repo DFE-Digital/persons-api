@@ -34,6 +34,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddDbContext<MopContext>(options =>
                 options.UseSqlServer(connectionString));
+            // Health checks
+            services.AddHealthChecks()
+                .AddDbContextCheck<MstrContext>("PersonsApi - Academies Database");
 
             // Authentication
             services.AddCustomAuthorization(config);
