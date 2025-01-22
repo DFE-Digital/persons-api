@@ -12,7 +12,8 @@
     ":automergeRequireAllStatusChecks",
     ":automergeTesters",
     ":maintainLockFilesWeekly",
-    ":dependencyDashboard"
+    ":dependencyDashboard",
+    "github>DFE-Digital/rsd-renovate-config"
   ],
   "timezone": "Europe/London",
   "minimumReleaseAge": "7 days",
