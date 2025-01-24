@@ -375,3 +375,9 @@ variable "existing_resource_group" {
   description = "Conditionally launch resources into an existing resource group. Specifying this will NOT create a resource group."
   type        = string
 }
+
+variable "monitor_http_availability_verb" {
+  description = "Which HTTP verb to use for the HTTP Availability check"
+  type        = string
+  default     = "GET"
+}
