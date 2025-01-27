@@ -1,35 +1,29 @@
 name: Build and Push NuGet Package
 
 on:
-  workflow_run:
-    workflows: ["Deploy"]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "The production tag name to process"
+        required: true
 
 env:
   DOTNET_VERSION: '8.0.x'
 
 jobs:
   build-and-test:
-
-    # if: >
-    #   github.event.workflow_run.conclusion == 'success' &&
-    #   startsWith(github.event.workflow_run.ref, 'refs/tags/production-')
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: write
+    if: startsWith(github.event.inputs.tag_name, 'production-')
+
     steps:
-    - uses: actions/checkout@v4
+    - name: Check Out Tag
+      uses: actions/checkout@v4
       with:
-        ref: ${{ github.ref }}
-        fetch-depth: 0 # Shallow clones disabled for a better relevancy of SC analysis
-
-    - name: Display Tag
-      run: echo "${{ github.event.workflow_run.head_commit.message }}"
-
-    - name: Debug Event Payload
-      run: echo "${{ toJson(github.event) }}"
+        ref: ${{ github.event.inputs.tag_name }}
+        fetch-depth: 0 # Ensure full history and tags are available
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -92,7 +86,7 @@ jobs:
       shell: /usr/bin/bash -e {0}
 
     - name: Build, pack and publish
-      working-directory: Dfe.PersonsApi.Client
+      working-directory: src/Dfe.PersonsApi.Client
       run: |
         dotnet build -c Release
         dotnet pack -c Release -p:PackageVersion=${{ env.NEW_VERSION }} --output .
