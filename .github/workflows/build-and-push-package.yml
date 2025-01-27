@@ -11,9 +11,10 @@ env:
 
 jobs:
   build-and-test:
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      startsWith(github.event.workflow_run.head_commit.message, 'production-')
+
+    # if: >
+    #   github.event.workflow_run.conclusion == 'success' &&
+    #   startsWith(github.event.workflow_run.ref, 'refs/tags/production-')
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -23,6 +24,12 @@ jobs:
       with:
         ref: ${{ github.ref }}
         fetch-depth: 0 # Shallow clones disabled for a better relevancy of SC analysis
+
+    - name: Display Tag
+      run: echo "${{ github.event.workflow_run.head_commit.message }}"
+
+    - name: Debug Event Payload
+      run: echo "${{ toJson(github.event) }}"
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
