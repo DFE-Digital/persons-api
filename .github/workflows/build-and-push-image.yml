@@ -100,7 +100,7 @@ jobs:
             script: |
               const tagName = "${{ needs.set-env.outputs.release }}"
               console.log("Triggering Build and Push NuGet Package workflow with tag:", tagName);
-              await github.actions.createWorkflowDispatch({
+              github.rest.actions.createWorkflowDispatch({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: "build-and-push-package.yml",
