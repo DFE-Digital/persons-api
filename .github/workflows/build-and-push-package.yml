@@ -88,7 +88,7 @@ jobs:
     - name: Build, pack and publish
       working-directory: src/Dfe.PersonsApi.Client
       run: |
-        dotnet nuget add source --username USERNAME --password '${{ secrets.GITHUB_TOKEN }}' --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
+        dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
         dotnet build -c Release
         dotnet pack -c Release -p:PackageVersion=${{ env.NEW_VERSION }} --output .
         dotnet nuget push "*.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/DFE-Digital/index.json
