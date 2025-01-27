@@ -96,12 +96,8 @@ jobs:
         uses: "actions/github-script@v7"
         with:
             github-token: "${{ secrets.GITHUB_TOKEN }}"
+            if: needs.set-env.outputs.environment == 'production'
             script: |
-              const environment = "${{ needs.set-env.outputs.environment }}";
-              if (environment !== "production") {
-                console.log("Not a production deployment. Skipping trigger.");
-                return;
-              }
               const tagName = ${{ needs.set-env.outputs.release }}
               console.log("Triggering Build and Push NuGet Package workflow with tag:", tagName);
               await github.actions.createWorkflowDispatch({
