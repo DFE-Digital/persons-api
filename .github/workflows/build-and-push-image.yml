@@ -98,7 +98,7 @@ jobs:
         with:
             github-token: "${{ secrets.GITHUB_TOKEN }}"
             script: |
-              const tagName = ${{ needs.set-env.outputs.release }}
+              const tagName = "${{ needs.set-env.outputs.release }}"
               console.log("Triggering Build and Push NuGet Package workflow with tag:", tagName);
               await github.actions.createWorkflowDispatch({
                 owner: context.repo.owner,
