@@ -97,11 +97,12 @@ jobs:
         with:
             github-token: "${{ secrets.GITHUB_TOKEN }}"
             script: |
-              const tagName = ${{ needs.set-env.outputs.release }}
-              if (!tagName.startsWith("production-")) {
+              const environment = "${{ needs.set-env.outputs.environment }}";
+              if (environment !== "production") {
                 console.log("Not a production deployment. Skipping trigger.");
                 return;
               }
+              const tagName = ${{ needs.set-env.outputs.release }}
               console.log("Triggering Build and Push NuGet Package workflow with tag:", tagName);
               await github.actions.createWorkflowDispatch({
                 owner: context.repo.owner,

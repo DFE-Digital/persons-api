@@ -16,17 +16,9 @@ jobs:
     permissions:
       packages: write
       contents: write
-    steps:
-    - name: Validate Tag Name
-      run: |
-        TAG_NAME="${{ github.event.inputs.tag_name }}"
-        echo "Tag Name: $TAG_NAME"
-        if [[ "$TAG_NAME" != production-* ]]; then
-          echo "Not a production tag name. Exiting."
-          exit 1
-        fi
-      id: validate-tag
+    if: startsWith(github.event.inputs.tag_name, 'production-')
 
+    steps:
     - name: Check Out Tag
       uses: actions/checkout@v4
       with:
