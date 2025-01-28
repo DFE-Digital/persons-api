@@ -16,6 +16,7 @@ jobs:
     permissions:
       packages: write
       contents: write
+    if: startsWith(github.event.inputs.tag_name, 'production-')
 
     steps:
     - name: Check Out Tag
