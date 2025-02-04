@@ -41,7 +41,7 @@ jobs:
       contents: read
     name: Run Package Validation
     needs: [ set-env ]
-    uses: DFE-Digital/rsd-github-actions/.github/workflows/validate-packages.yml
+    uses: DFE-Digital/rsd-github-actions/.github/workflows/validate-packages.yml@v1.0.0
     with:
       environment: ${{ needs.set-env.outputs.environment }}
 
