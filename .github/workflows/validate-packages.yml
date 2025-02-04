@@ -6,12 +6,6 @@ on:
       environment:
         required: true
         type: string
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to run validation against'
-        required: true
-        type: string
 
 jobs:
   validate:
@@ -24,7 +18,7 @@ jobs:
       - name: Validate Packages
         shell: pwsh
         run: |
-          $inputEnv = '${{ github.event.inputs.environment }}'
+          $inputEnv = '${{ inputs.environment }}'
 
           .\.github\scripts\validate-packages.ps1 `
             -Environment $inputEnv `
