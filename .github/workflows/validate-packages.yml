@@ -1,6 +1,11 @@
 name: Validate Packages
 
 on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       environment:
