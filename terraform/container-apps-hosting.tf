@@ -61,4 +61,5 @@ module "azure_container_apps_hosting" {
   monitor_endpoint_healthcheck    = local.monitor_endpoint_healthcheck
   existing_logic_app_workflow     = local.existing_logic_app_workflow
   monitor_http_availability_verb  = local.monitor_http_availability_verb
+  monitor_http_availability_fqdn  = local.monitor_http_availability_fqdn
 }
