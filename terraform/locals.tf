@@ -57,4 +57,5 @@ locals {
   cdn_frontdoor_vdp_destination_hostname          = var.cdn_frontdoor_vdp_destination_hostname
   monitor_http_availability_verb                  = var.monitor_http_availability_verb
   monitor_http_availability_fqdn                  = var.monitor_http_availability_fqdn
+  enable_monitoring_traces                        = var.enable_monitoring_traces
 }
