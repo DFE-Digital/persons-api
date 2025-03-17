@@ -2,11 +2,10 @@
 ARG DOTNET_VERSION=8.0
 
 # Build the app using the dotnet SDK
-FROM "mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0" AS build
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0 AS build
 WORKDIR /build
 ARG CI
 ENV CI=${CI}
-COPY ./script/docker-entrypoint.sh /app/docker-entrypoint.sh
 
 ## START: Restore Packages
 ARG PROJECT_NAME="Dfe.PersonsApi"
@@ -24,19 +23,22 @@ COPY ./src/Tests/${PROJECT_NAME}.Domain.Tests/${PROJECT_NAME}.Domain.Tests.cspro
 COPY ./src/Tests/${PROJECT_NAME}.Tests.Common/${PROJECT_NAME}.Tests.Common.csproj             ./src/Tests/${PROJECT_NAME}.Tests.Common/
 COPY ./src/Tests/${PROJECT_NAME}.Tests.Integration/${PROJECT_NAME}.Tests.Integration.csproj   ./src/Tests/${PROJECT_NAME}.Tests.Integration/
 
-RUN --mount=type=secret,id=github_token dotnet nuget add source --username USERNAME --password $(cat /run/secrets/github_token) --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json"
-RUN ["dotnet", "restore", "Dfe.PersonsApi.sln"]
+RUN --mount=type=secret,id=github_token dotnet nuget add source --username USERNAME --password $(cat /run/secrets/github_token) --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DFE-Digital/index.json" && \
+    dotnet restore Dfe.PersonsApi.sln
 ## END: Restore Packages
 
-COPY ./src/ ./
-RUN ["dotnet", "publish", "PersonsApi", "-o", "/app"]
+COPY ./src/ ./src/
+WORKDIR /build/src/PersonsApi/
+RUN dotnet build --no-restore -c Release && \
+    dotnet publish --no-build -o /app
 
 # Build a runtime environment
-FROM "mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0" AS final
+FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-azurelinux3.0 AS final
 WORKDIR /app
 LABEL org.opencontainers.image.source="https://github.com/DFE-Digital/persons-api"
 LABEL org.opencontainers.image.description="Persons API"
 
 COPY --from=build /app /app
-RUN ["chmod", "+x", "./docker-entrypoint.sh"]
+COPY ./script/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x ./docker-entrypoint.sh
 USER $APP_UID
