@@ -55,7 +55,7 @@ jobs:
       packages: write
     name: Deploy Container
     needs: [ set-env, validate-packages ]
-    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/build-push-deploy.yml@2669c85cf877ce3161b7d0edf36690106412c70b # v4.1.0
+    uses: DFE-Digital/deploy-azure-container-apps-action/.github/workflows/build-push-deploy.yml@23ab6d515b6d3e5cea917134f56c19ce2e93be47 # v5.2.0
     with:
       docker-image-name: 'persons-api'
       docker-build-file-name: './Dockerfile'
