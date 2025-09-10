@@ -1,4 +1,4 @@
-﻿namespace Dfe.PersonsApi.Client.Security
+﻿namespace GovUK.Dfe.PersonsApi.Client.Security
 {
     public interface ITokenAcquisitionService
     {

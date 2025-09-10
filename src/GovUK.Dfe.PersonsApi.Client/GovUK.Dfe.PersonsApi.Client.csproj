@@ -15,7 +15,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<None Include="bin\$(Configuration)\$(TargetFramework)\Dfe.PersonsApi.Client.xml" Pack="true" PackagePath="\" />
+		<None Include="bin\$(Configuration)\$(TargetFramework)\GovUK.Dfe.PersonsApi.Client.xml" Pack="true" PackagePath="\" />
 		<None Include="readme.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 

@@ -1,9 +1,9 @@
 ﻿using System.Security.Claims;
 using AutoFixture;
 using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
-using Dfe.PersonsApi.Client;
-using Dfe.PersonsApi.Client.Contracts;
-using Dfe.PersonsApi.Client.Extensions;
+using GovUK.Dfe.PersonsApi.Client;
+using GovUK.Dfe.PersonsApi.Client.Contracts;
+using GovUK.Dfe.PersonsApi.Client.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
