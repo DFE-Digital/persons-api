@@ -1,6 +1,6 @@
 {
   "runtime": "Net80",
-  "defaultVariables": "CSharpOutputPath=../Dfe.PersonsApi.Client",
+  "defaultVariables": "CSharpOutputPath=../GovUK.Dfe.PersonsApi.Client",
   "documentGenerator": {
     "aspNetCoreToOpenApi": {
       "project": "../PersonsApi/PersonsApi.csproj",
@@ -78,7 +78,7 @@
       "clientClassAccessModifier": "public",
       "typeAccessModifier": "public",
       "generateContractsOutput": true,
-      "contractsNamespace": "Dfe.PersonsApi.Client.Contracts",
+      "contractsNamespace": "GovUK.Dfe.PersonsApi.Client.Contracts",
       "contractsOutputFilePath": "$(CSharpOutputPath)/Generated/Contracts.g.cs",
       "parameterDateTimeFormat": "s",
       "parameterDateFormat": "yyyy-MM-dd",
@@ -102,7 +102,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "PersonsApiResponse",
-      "namespace": "Dfe.PersonsApi.Client",
+      "namespace": "GovUK.Dfe.PersonsApi.Client",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTime",
       "jsonConverters": null,

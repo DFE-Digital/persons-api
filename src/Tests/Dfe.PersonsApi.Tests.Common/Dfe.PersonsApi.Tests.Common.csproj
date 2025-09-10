@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Dfe.PersonsApi.Application\Dfe.PersonsApi.Application.csproj" />
-    <ProjectReference Include="..\..\Dfe.PersonsApi.Client\Dfe.PersonsApi.Client.csproj" />
+    <ProjectReference Include="..\..\GovUK.Dfe.PersonsApi.Client\GovUK.Dfe.PersonsApi.Client.csproj" />
     <ProjectReference Include="..\..\Dfe.PersonsApi.Infrastructure\Dfe.PersonsApi.Infrastructure.csproj" />
     <ProjectReference Include="..\..\PersonsApi\PersonsApi.csproj" />
   </ItemGroup>

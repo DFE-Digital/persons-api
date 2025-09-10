@@ -1,6 +1,6 @@
 ﻿using Dfe.PersonsApi.Infrastructure;
 using Dfe.PersonsApi.Tests.Common.Customizations;
-using Dfe.PersonsApi.Client.Contracts;
+using GovUK.Dfe.PersonsApi.Client.Contracts;
 using DfE.CoreLibs.Testing.AutoFixture.Attributes;
 using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
 using Microsoft.EntityFrameworkCore;

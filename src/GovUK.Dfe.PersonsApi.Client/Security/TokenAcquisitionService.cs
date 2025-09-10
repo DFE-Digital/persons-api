@@ -1,8 +1,8 @@
-﻿using Dfe.PersonsApi.Client.Settings;
+﻿using GovUK.Dfe.PersonsApi.Client.Settings;
 using Microsoft.Identity.Client;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Dfe.PersonsApi.Client.Security
+namespace GovUK.Dfe.PersonsApi.Client.Security
 {
     [ExcludeFromCodeCoverage]
     public class TokenAcquisitionService : ITokenAcquisitionService
