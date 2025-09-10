@@ -11,8 +11,8 @@ ENV CI=${CI}
 ARG PROJECT_NAME="Dfe.PersonsApi"
 COPY ./${PROJECT_NAME}.sln ./
 COPY ./src/${PROJECT_NAME}.Application/${PROJECT_NAME}.Application.csproj         ./src/${PROJECT_NAME}.Application/
-COPY ./src/${PROJECT_NAME}.Client/${PROJECT_NAME}.Client.csproj                   ./src/${PROJECT_NAME}.Client/
-COPY ./src/${PROJECT_NAME}.Client/readme.md                                       ./src/${PROJECT_NAME}.Client/
+COPY ./src/GovUK.Dfe.PersonsApi.Client/GovUK.Dfe.PersonsApi.Client.csproj         ./src/GovUK.Dfe.PersonsApi.Client/
+COPY ./src/GovUK.Dfe.PersonsApi.Client/readme.md                                       ./src/GovUK.Dfe.PersonsApi.Client/
 COPY ./src/${PROJECT_NAME}.Domain/${PROJECT_NAME}.Domain.csproj                   ./src/${PROJECT_NAME}.Domain/
 COPY ./src/${PROJECT_NAME}.Infrastructure/${PROJECT_NAME}.Infrastructure.csproj   ./src/${PROJECT_NAME}.Infrastructure/
 COPY ./src/${PROJECT_NAME}.Utils/${PROJECT_NAME}.Utils.csproj                     ./src/${PROJECT_NAME}.Utils/
