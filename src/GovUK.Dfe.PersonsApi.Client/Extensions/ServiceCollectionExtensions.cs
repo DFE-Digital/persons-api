@@ -1,10 +1,10 @@
-﻿using Dfe.PersonsApi.Client.Security;
-using Dfe.PersonsApi.Client.Settings;
+﻿using GovUK.Dfe.PersonsApi.Client.Security;
+using GovUK.Dfe.PersonsApi.Client.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Dfe.PersonsApi.Client.Extensions
+namespace GovUK.Dfe.PersonsApi.Client.Extensions
 {
     [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtensions

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Dfe.PersonsApi.Infrastructure;
-using Dfe.PersonsApi.Client.Contracts;
+using GovUK.Dfe.PersonsApi.Client.Contracts;
 using Microsoft.EntityFrameworkCore;
 using PersonsApi;
 using System.Security.Claims;

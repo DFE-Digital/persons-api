@@ -1,4 +1,4 @@
-﻿namespace Dfe.PersonsApi.Client.Settings
+﻿namespace GovUK.Dfe.PersonsApi.Client.Settings
 {
     public class PersonsApiClientSettings
     {

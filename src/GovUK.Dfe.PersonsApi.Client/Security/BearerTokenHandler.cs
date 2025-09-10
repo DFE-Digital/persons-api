@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 
-namespace Dfe.PersonsApi.Client.Security
+namespace GovUK.Dfe.PersonsApi.Client.Security
 {
     [ExcludeFromCodeCoverage]
     public class BearerTokenHandler(ITokenAcquisitionService tokenAcquisitionService) : DelegatingHandler

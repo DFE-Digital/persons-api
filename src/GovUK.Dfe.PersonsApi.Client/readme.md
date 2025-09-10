@@ -17,4 +17,4 @@ The Persons API serves as a centralised resource for obtaining up-to-date contac
 To install the Persons API Client Library, use the following command in your .NET project:
 
 ```sh
-dotnet add package Dfe.PersonsApi.Client
+dotnet add package GovUK.Dfe.PersonsApi.Client
