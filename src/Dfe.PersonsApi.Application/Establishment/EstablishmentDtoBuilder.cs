@@ -150,25 +150,6 @@ namespace Dfe.PersonsApi.Application.Establishment
             return this;
         }
 
-        public EstablishmentDtoBuilder WithMISEstablishment(Domain.Establishment.Establishment establishment)
-        {
-            _dto.MISEstablishment = new MisEstablishmentDto
-            {
-                DateOfLatestSection8Inspection = establishment?.DateOfLatestShortInspection.ToResponseDate(),
-                InspectionEndDate = establishment?.InspectionEndDate.ToResponseDate(),
-                OverallEffectiveness = establishment?.OverallEffectiveness?.ToString(),
-                QualityOfEducation = establishment?.QualityOfEducation?.ToString(),
-                BehaviourAndAttitudes = establishment?.BehaviourAndAttitudes?.ToString(),
-                PersonalDevelopment = establishment?.PersonalDevelopment?.ToString(),
-                EffectivenessOfLeadershipAndManagement = establishment?.EffectivenessOfLeadershipAndManagement?.ToString(),
-                EarlyYearsProvision = establishment?.EarlyYearsProvisionWhereApplicable?.ToString(),
-                SixthFormProvision = establishment?.SixthFormProvisionWhereApplicable?.ToString(),
-                Weblink = establishment?.Website
-            };
-
-            return this;
-        }
-
         public EstablishmentDtoBuilder WithAddress(Domain.Establishment.Establishment establishment)
         {
             _dto.Address = new AddressDto()

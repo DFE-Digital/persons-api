@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Dfe.PersonsApi.Domain.Interfaces.Repositories;
+﻿using Dfe.PersonsApi.Domain.Interfaces.Repositories;
 using DfE.CoreLibs.Contracts.Academies.V4.Establishments;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Application.Establishment
 {
@@ -35,7 +35,6 @@ namespace Dfe.PersonsApi.Application.Establishment
                 .WithPhaseOfEducation(establishment)
                 .WithReligiousCharacter(establishment)
                 .WithParliamentaryConstituency(establishment)
-                .WithMISEstablishment(establishment)
                 .WithAddress(establishment)
                 .Build();
 
