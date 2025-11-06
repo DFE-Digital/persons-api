@@ -5,10 +5,10 @@ using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Application.Establishment.Queries.GetAllPersonsAssociatedWithAcademyByUrn;
 using Dfe.PersonsApi.Application.MappingProfiles;
 using Dfe.PersonsApi.Testing.Common.Customizations.Models;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
-using DfE.CoreLibs.Testing.AutoFixture.Attributes;
-using DfE.CoreLibs.Testing.AutoFixture.Customizations;
+using GovUK.Dfe.CoreLibs.Caching.Helpers;
+using GovUK.Dfe.CoreLibs.Caching.Interfaces;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Attributes;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Customizations;
 using MockQueryable;
 using NSubstitute;
 

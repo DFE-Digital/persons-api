@@ -1,6 +1,6 @@
 using Dfe.PersonsApi.Application.MappingProfiles;
-using DfE.CoreLibs.Http.Interfaces;
-using DfE.CoreLibs.Http.Middlewares.CorrelationId;
+using GovUK.Dfe.CoreLibs.Http.Interfaces;
+using GovUK.Dfe.CoreLibs.Http.Middlewares.CorrelationId;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.FeatureManagement;
@@ -21,7 +21,7 @@ namespace PersonsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddJsonOptions(c => {c.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());});
+            services.AddControllers().AddJsonOptions(c => { c.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
             services.AddApiVersioning();
             services.AddFeatureManagement();
 
@@ -106,7 +106,8 @@ namespace PersonsApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             // Ensure we do not lose X-Forwarded-* Headers when behind a Proxy
-            var forwardOptions = new ForwardedHeadersOptions {
+            var forwardOptions = new ForwardedHeadersOptions
+            {
                 ForwardedHeaders = ForwardedHeaders.All,
                 RequireHeaderSymmetry = false
             };
@@ -175,7 +176,7 @@ namespace PersonsApi
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthentication(); 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

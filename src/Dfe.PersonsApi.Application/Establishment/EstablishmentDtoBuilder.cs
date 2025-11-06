@@ -1,7 +1,7 @@
 ﻿using Dfe.PersonsApi.Domain.Census;
 using Dfe.PersonsApi.Utils.Extensions;
-using DfE.CoreLibs.Contracts.Academies.V4;
-using DfE.CoreLibs.Contracts.Academies.V4.Establishments;
+using GovUK.Dfe.CoreLibs.Contracts.Academies.Base;
+using GovUK.Dfe.CoreLibs.Contracts.Academies.V4.Establishments;
 
 namespace Dfe.PersonsApi.Application.Establishment
 {

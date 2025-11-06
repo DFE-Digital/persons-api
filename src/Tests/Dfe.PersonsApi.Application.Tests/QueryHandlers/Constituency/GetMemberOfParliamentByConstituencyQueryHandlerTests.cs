@@ -6,10 +6,10 @@ using Dfe.PersonsApi.Application.MappingProfiles;
 using Dfe.PersonsApi.Domain.Interfaces.Repositories;
 using Dfe.PersonsApi.Testing.Common.Customizations.Models;
 using Dfe.PersonsApi.Tests.Common.Customizations.Entities;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
-using DfE.CoreLibs.Testing.AutoFixture.Attributes;
-using DfE.CoreLibs.Testing.AutoFixture.Customizations;
+using GovUK.Dfe.CoreLibs.Caching.Helpers;
+using GovUK.Dfe.CoreLibs.Caching.Interfaces;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Attributes;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Customizations;
 using NSubstitute;
 
 namespace Dfe.PersonsApi.Application.Tests.QueryHandlers.Constituency

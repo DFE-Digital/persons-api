@@ -4,8 +4,8 @@ using Dfe.PersonsApi.Application.Common.Interfaces;
 using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Utils.Enums;
 using Dfe.PersonsApi.Utils.Helpers;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
+using GovUK.Dfe.CoreLibs.Caching.Helpers;
+using GovUK.Dfe.CoreLibs.Caching.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

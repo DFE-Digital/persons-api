@@ -1,20 +1,20 @@
-﻿using System.Security.Claims;
-using AutoFixture;
-using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
-using GovUK.Dfe.PersonsApi.Client;
-using GovUK.Dfe.PersonsApi.Client.Contracts;
-using GovUK.Dfe.PersonsApi.Client.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using DfE.CoreLibs.Testing.Mocks.Authentication;
-using Microsoft.AspNetCore.Authentication;
-using System.Net.Http.Headers;
+﻿using AutoFixture;
 using Dfe.PersonsApi.Domain.Constituencies;
 using Dfe.PersonsApi.Domain.Establishment;
 using Dfe.PersonsApi.Domain.Trust;
 using Dfe.PersonsApi.Domain.ValueObjects;
 using Dfe.PersonsApi.Infrastructure;
+using GovUK.Dfe.CoreLibs.Testing.Mocks.Authentication;
+using GovUK.Dfe.CoreLibs.Testing.Mocks.WebApplicationFactory;
+using GovUK.Dfe.PersonsApi.Client;
+using GovUK.Dfe.PersonsApi.Client.Contracts;
+using GovUK.Dfe.PersonsApi.Client.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using TrustGovernance = Dfe.PersonsApi.Domain.Trust.TrustGovernance;
 
 namespace Dfe.PersonsApi.Tests.Common.Customizations

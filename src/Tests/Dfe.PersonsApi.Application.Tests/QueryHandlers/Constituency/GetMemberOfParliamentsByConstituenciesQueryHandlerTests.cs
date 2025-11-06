@@ -1,15 +1,15 @@
 ﻿using AutoFixture;
 using AutoFixture.Xunit2;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
-using DfE.CoreLibs.Testing.AutoFixture.Attributes;
-using DfE.CoreLibs.Testing.AutoFixture.Customizations;
 using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Application.Constituencies.Queries.GetMemberOfParliamentByConstituencies;
 using Dfe.PersonsApi.Application.MappingProfiles;
 using Dfe.PersonsApi.Domain.Interfaces.Repositories;
 using Dfe.PersonsApi.Testing.Common.Customizations.Models;
 using Dfe.PersonsApi.Tests.Common.Customizations.Entities;
+using GovUK.Dfe.CoreLibs.Caching.Helpers;
+using GovUK.Dfe.CoreLibs.Caching.Interfaces;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Attributes;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Customizations;
 using MockQueryable;
 using NSubstitute;
 

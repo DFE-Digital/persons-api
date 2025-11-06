@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Domain.Interfaces.Repositories;
-using DfE.CoreLibs.Caching.Helpers;
-using DfE.CoreLibs.Caching.Interfaces;
+using GovUK.Dfe.CoreLibs.Caching.Helpers;
+using GovUK.Dfe.CoreLibs.Caching.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
