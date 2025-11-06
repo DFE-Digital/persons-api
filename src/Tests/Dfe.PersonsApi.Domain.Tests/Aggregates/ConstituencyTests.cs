@@ -1,8 +1,8 @@
 ﻿using Dfe.PersonsApi.Domain.Constituencies;
 using Dfe.PersonsApi.Domain.ValueObjects;
 using Dfe.PersonsApi.Testing.Common.Customizations.Models;
-using DfE.CoreLibs.Testing.AutoFixture.Attributes;
-using DfE.CoreLibs.Testing.AutoFixture.Customizations;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Attributes;
+using GovUK.Dfe.CoreLibs.Testing.AutoFixture.Customizations;
 
 namespace Dfe.PersonsApi.Domain.Tests.Aggregates
 {

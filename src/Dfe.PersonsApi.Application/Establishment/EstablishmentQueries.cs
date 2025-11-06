@@ -1,5 +1,5 @@
 ﻿using Dfe.PersonsApi.Domain.Interfaces.Repositories;
-using DfE.CoreLibs.Contracts.Academies.V4.Establishments;
+using GovUK.Dfe.CoreLibs.Contracts.Academies.V4.Establishments;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Application.Establishment

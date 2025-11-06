@@ -1,23 +1,24 @@
-﻿using System.Security.Claims;
-using AutoFixture;
-using DfE.CoreLibs.Testing.Mocks.WebApplicationFactory;
+﻿using AutoFixture;
+using GovUK.Dfe.CoreLibs.Testing.Mocks.WebApplicationFactory;
 using GovUK.Dfe.PersonsApi.Client;
 using GovUK.Dfe.PersonsApi.Client.Contracts;
 using GovUK.Dfe.PersonsApi.Client.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 
 namespace Dfe.PersonsApi.Tests.Common.Customizations
 {
     public class CustomWebApplicationFactoryCustomization<TProgram> : ICustomization
-        where TProgram : class {
+        where TProgram : class
+    {
 
         public void Customize(IFixture fixture)
         {
             fixture.Customize<CustomWebApplicationFactory<TProgram>>(composer => composer.FromFactory(() =>
             {
 
-                var factory = new CustomWebApplicationFactory<TProgram>(); 
+                var factory = new CustomWebApplicationFactory<TProgram>();
 
                 var client = factory.CreateClient();
 
@@ -32,7 +33,7 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations
                 services.AddSingleton<IConfiguration>(config);
                 services.AddPersonsApiClient<IConstituenciesClient, ConstituenciesClient>(config, client);
                 services.AddPersonsApiClient<IEstablishmentsClient, EstablishmentsClient>(config, client);
-                
+
                 var serviceProvider = services.BuildServiceProvider();
 
                 fixture.Inject(factory);
