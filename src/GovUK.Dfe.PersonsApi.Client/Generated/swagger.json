@@ -235,7 +235,8 @@
             "type": "string"
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "displayName": {
             "type": "string"
