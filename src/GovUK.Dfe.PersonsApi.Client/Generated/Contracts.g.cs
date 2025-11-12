@@ -218,6 +218,12 @@ namespace GovUK.Dfe.PersonsApi.Client.Contracts
         [Newtonsoft.Json.JsonProperty("urn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Urn { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("dateOfAppointment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DateOfAppointment { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("dateTermOfOfficeEndsEnded", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DateTermOfOfficeEndsEnded { get; set; }
+
         public string ToJson()
         {
 
@@ -241,6 +247,12 @@ namespace GovUK.Dfe.PersonsApi.Client.Contracts
 
         [Newtonsoft.Json.JsonProperty("trn", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Trn { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("dateOfAppointment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DateOfAppointment { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("dateTermOfOfficeEndsEnded", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string DateTermOfOfficeEndsEnded { get; set; }
 
         public string ToJson()
         {
