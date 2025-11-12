@@ -45,6 +45,8 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             var expectedUpdatedAt = source.EducationEstablishmentGovernance.Modified;
             var expectedDateOfAppointment = source.EducationEstablishmentGovernance.DateOfAppointment;
             var expectedDateTermOfOfficeEndsEnded = source.EducationEstablishmentGovernance.DateTermOfOfficeEndsEnded;
+            var expectedURN = source.Establishment.URN;
+            var expectedUKPRN = source.Establishment.UKPRN;
 
             // Act
             var result = _mapper.Map<AcademyGovernance>(source);
@@ -61,6 +63,13 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().Be(expectedUpdatedAt);
             result.DateOfAppointment.Should().Be(expectedDateOfAppointment);
             result.DateTermOfOfficeEndsEnded.Should().Be(expectedDateTermOfOfficeEndsEnded);
+
+            // Test Academy-specific properties that were missing
+            result.URN.Should().Be(expectedURN);
+            result.UKPRN.Should().Be(expectedUKPRN);
+
+            // Test that Phone is not mapped (should be null since it's ignored)
+            result.Phone.Should().BeNull();
         }
 
         [Fact]
@@ -85,7 +94,12 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
                 Name = "Chair of Governors"
             };
 
-            var establishment = _fixture.Create<Domain.Establishment.Establishment>();
+            var establishment = new Domain.Establishment.Establishment
+            {
+                SK = 456,
+                URN = 12345,
+                UKPRN = "10012345"
+            };
 
             var source = new AcademyGovernanceQueryModel(establishmentGovernance, governanceRoleType, establishment);
 
@@ -104,6 +118,35 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().BeNull();
             result.DateOfAppointment.Should().BeNull();
             result.DateTermOfOfficeEndsEnded.Should().BeNull();
+
+            // Test establishment mappings work even with null governance values
+            result.URN.Should().Be(12345);
+            result.UKPRN.Should().Be("10012345");
+            result.Phone.Should().BeNull(); // Ignored field
+        }
+
+        [Fact]
+        public void Map_WhenEstablishmentHasNullValues_ShouldHandleNullsCorrectly()
+        {
+            // Arrange
+            var establishmentGovernance = _fixture.Create<EducationEstablishmentGovernance>();
+            var governanceRoleType = _fixture.Create<GovernanceRoleType>();
+            var establishment = new Domain.Establishment.Establishment
+            {
+                SK = 789,
+                URN = null,
+                UKPRN = null
+            };
+
+            var source = new AcademyGovernanceQueryModel(establishmentGovernance, governanceRoleType, establishment);
+
+            // Act
+            var result = _mapper.Map<AcademyGovernance>(source);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.URN.Should().BeNull();
+            result.UKPRN.Should().BeNull();
         }
 
         [Fact]
@@ -158,6 +201,44 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             // Assert
             result.DisplayName.Should().Be(expectedDisplayName);
             result.DisplayNameWithTitle.Should().Be(expectedDisplayNameWithTitle);
+        }
+
+        [Fact]
+        public void Map_EstablishmentProperties_ShouldMapCorrectly()
+        {
+            // Arrange
+            var establishmentGovernance = _fixture.Create<EducationEstablishmentGovernance>();
+            var governanceRoleType = _fixture.Create<GovernanceRoleType>();
+            var establishment = new Domain.Establishment.Establishment
+            {
+                SK = 999,
+                URN = 54321,
+                UKPRN = "10054321"
+            };
+
+            var source = new AcademyGovernanceQueryModel(establishmentGovernance, governanceRoleType, establishment);
+
+            // Act
+            var result = _mapper.Map<AcademyGovernance>(source);
+
+            // Assert
+            result.Should().NotBeNull();
+            result.URN.Should().Be(54321);
+            result.UKPRN.Should().Be("10054321");
+        }
+
+        [Fact]
+        public void Map_PhoneProperty_ShouldBeIgnored()
+        {
+            // Arrange
+            var source = _fixture.Create<AcademyGovernanceQueryModel>();
+
+            // Act
+            var result = _mapper.Map<AcademyGovernance>(source);
+
+            // Assert - Phone should always be null since it's ignored in the mapping
+            result.Should().NotBeNull();
+            result.Phone.Should().BeNull();
         }
 
         [Fact]

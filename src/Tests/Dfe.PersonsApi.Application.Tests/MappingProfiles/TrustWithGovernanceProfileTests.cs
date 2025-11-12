@@ -116,6 +116,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().BeNull();
             result.DateOfAppointment.Should().BeNull();
             result.DateTermOfOfficeEndsEnded.Should().BeNull();
+            result.Phone.Should().BeNull();
         }
 
         [Fact]
