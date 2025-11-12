@@ -17,7 +17,10 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => $"{src.TrustGovernance.Forename1} {src.TrustGovernance.Surname}"))
                 .ForMember(dest => dest.DisplayNameWithTitle, opt => opt.MapFrom(src => $"{src.TrustGovernance.Title} {src.TrustGovernance.Forename1} {src.TrustGovernance.Surname}"))
                 .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => new List<string?> { src.GovernanceRoleType.Name }))
-                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.TrustGovernance.Modified));
+                .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.TrustGovernance.Modified))
+                .ForMember(dest => dest.DateOfAppointment, opt => opt.MapFrom(src => src.TrustGovernance.DateOfAppointment))
+                .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.TrustGovernance.DateTermOfOfficeEndsOrEnded));
+
         }
     }
 }

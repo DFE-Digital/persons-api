@@ -289,6 +289,14 @@
                 "type": "integer",
                 "format": "int32",
                 "nullable": true
+              },
+              "dateOfAppointment": {
+                "type": "string",
+                "nullable": true
+              },
+              "dateTermOfOfficeEndsEnded": {
+                "type": "string",
+                "nullable": true
               }
             }
           }
@@ -308,6 +316,14 @@
                 "nullable": true
               },
               "trn": {
+                "type": "string",
+                "nullable": true
+              },
+              "dateOfAppointment": {
+                "type": "string",
+                "nullable": true
+              },
+              "dateTermOfOfficeEndsEnded": {
                 "type": "string",
                 "nullable": true
               }
