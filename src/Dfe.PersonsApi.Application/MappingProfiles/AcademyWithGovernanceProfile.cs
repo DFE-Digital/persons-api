@@ -16,6 +16,9 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.DisplayNameWithTitle, opt => opt.MapFrom(src => $"{src.EducationEstablishmentGovernance.Title} {src.EducationEstablishmentGovernance.Forename1} {src.EducationEstablishmentGovernance.Surname}"))
                 .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => new List<string?> { src.GovernanceRoleType.Name }))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.Modified))
+                .ForMember(dest => dest.Phone, opt => opt.Ignore())
+                .ForMember(dest => dest.URN, opt => opt.MapFrom(src => src.Establishment.URN))
+                .ForMember(dest => dest.UKPRN, opt => opt.MapFrom(src => src.Establishment.UKPRN))
                 .ForMember(dest => dest.DateOfAppointment, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.DateOfAppointment))
                 .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.DateTermOfOfficeEndsEnded));
         }
