@@ -14,7 +14,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
     public class TrustWithGovernanceProfileTests
     {
         private readonly IMapper _mapper;
-        private readonly IFixture _fixture;
+        private readonly Fixture _fixture;
 
         public TrustWithGovernanceProfileTests()
         {
@@ -32,8 +32,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         [Theory]
         [CustomAutoData(typeof(OmitCircularReferenceCustomization), typeof(TrustGovernanceQueryModelCustomization))]
         public void Map_TrustGovernanceQueryModelToTrustGovernance_ShouldMapAllPropertiesCorrectly(
-            TrustGovernanceQueryModel source,
-            IFixture fixture)
+            TrustGovernanceQueryModel source)
         {
             // Arrange
             var expectedId = (int)source.TrustGovernance.SK;
@@ -213,8 +212,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         [Theory]
         [CustomAutoData(typeof(OmitCircularReferenceCustomization), typeof(TrustGovernanceQueryModelCustomization))]
         public void Map_TrustSpecificProperties_ShouldMapCorrectly(
-            TrustGovernanceQueryModel source,
-            IFixture fixture)
+            TrustGovernanceQueryModel source)
         {
             // Arrange
             source.Trust.UKPRN = "87654321";
@@ -232,8 +230,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         [Theory]
         [CustomAutoData(typeof(OmitCircularReferenceCustomization), typeof(TrustGovernanceQueryModelCustomization))]
         public void Map_DateProperties_ShouldMapCorrectly(
-            TrustGovernanceQueryModel source,
-            IFixture fixture)
+            TrustGovernanceQueryModel source)
         {
             // Arrange
             var appointmentDate = "2023-01-15";

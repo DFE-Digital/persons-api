@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Dfe.PersonsApi.Application.Common.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Application.MappingProfiles
 {
+    [ExcludeFromCodeCoverage]
     public class AcademyWithGovernanceProfile : Profile
     {
         public AcademyWithGovernanceProfile()

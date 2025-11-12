@@ -13,7 +13,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
     public class AcademyWithGovernanceProfileTests
     {
         private readonly IMapper _mapper;
-        private readonly IFixture _fixture;
+        private readonly Fixture _fixture;
 
         public AcademyWithGovernanceProfileTests()
         {
@@ -31,8 +31,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         [Theory]
         [CustomAutoData(typeof(OmitCircularReferenceCustomization), typeof(AcademyGovernanceQueryModelCustomization))]
         public void Map_AcademyGovernanceQueryModelToAcademyGovernance_ShouldMapAllPropertiesCorrectly(
-            AcademyGovernanceQueryModel source,
-            IFixture fixture)
+            AcademyGovernanceQueryModel source)
         {
             // Arrange
             var expectedId = (int)source.EducationEstablishmentGovernance.SK;
