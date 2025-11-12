@@ -12,6 +12,8 @@ namespace Dfe.PersonsApi.Testing.Common.Customizations.Models
         public string? DisplayNameWithTitle { get; set; } = "Mr. John Doe";
         public List<string> Roles { get; set; } = ["MP"];
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public string? DateOfAppointment { get; set; } = "10/01/2025";
+        public string? DateTermOfOfficeEndsEnded { get; set; } = "11/02/2025";
 
         public void Customize(IFixture fixture)
         {
@@ -22,7 +24,10 @@ namespace Dfe.PersonsApi.Testing.Common.Customizations.Models
                 .With(x => x.DisplayName, DisplayName)
                 .With(x => x.DisplayNameWithTitle, DisplayNameWithTitle)
                 .With(x => x.Roles, Roles)
-                .With(x => x.UpdatedAt, UpdatedAt));
+                .With(x => x.UpdatedAt, UpdatedAt)
+                .With(x => x.DateOfAppointment, DateOfAppointment)
+                .With(x => x.DateTermOfOfficeEndsEnded, DateTermOfOfficeEndsEnded)
+             );
         }
     }
 }
