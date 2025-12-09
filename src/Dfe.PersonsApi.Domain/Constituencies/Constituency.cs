@@ -1,5 +1,6 @@
 ﻿using Dfe.PersonsApi.Domain.Common;
 using Dfe.PersonsApi.Domain.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dfe.PersonsApi.Domain.Constituencies
 {
@@ -9,6 +10,10 @@ namespace Dfe.PersonsApi.Domain.Constituencies
         public ConstituencyId Id { get; }
         public MemberId MemberId { get; private set; }
         public string ConstituencyName { get; private set; }
+
+        [NotMapped]
+        public string? ConstituencyPartyName { get; private set; }
+
         public NameDetails NameDetails { get; private set; }
         public DateTime LastRefresh { get; private set; }
         public DateOnly? EndDate { get; private set; }
@@ -20,6 +25,7 @@ namespace Dfe.PersonsApi.Domain.Constituencies
             ConstituencyId constituencyId,
             MemberId memberId,
             string constituencyName,
+            string? constituencyPartyName,   
             NameDetails nameDetails,
             DateTime lastRefresh,
             DateOnly? endDate,
@@ -28,6 +34,7 @@ namespace Dfe.PersonsApi.Domain.Constituencies
             Id = constituencyId ?? throw new ArgumentNullException(nameof(constituencyId));
             MemberId = memberId ?? throw new ArgumentNullException(nameof(memberId));
             ConstituencyName = constituencyName;
+            ConstituencyPartyName = constituencyPartyName;
             NameDetails = nameDetails ?? throw new ArgumentNullException(nameof(nameDetails));
             LastRefresh = lastRefresh;
             EndDate = endDate;

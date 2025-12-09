@@ -13,6 +13,7 @@ namespace Dfe.PersonsApi.Domain.Tests.Aggregates
         public void Constructor_ShouldThrowArgumentNullException_WhenConstituencyIdIsNull(
             MemberId memberId,
             string constituencyName,
+            string? constituencyPartyName,
             NameDetails nameDetails,
             DateTime lastRefresh,
             DateOnly? endDate,
@@ -20,7 +21,7 @@ namespace Dfe.PersonsApi.Domain.Tests.Aggregates
         {
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
-                new Constituency(null!, memberId, constituencyName, nameDetails, lastRefresh, endDate, memberContactDetails));
+                new Constituency(null!, memberId, constituencyName, constituencyPartyName, nameDetails, lastRefresh, endDate, memberContactDetails));
 
             Assert.Equal("constituencyId", exception.ParamName);
         }
@@ -30,6 +31,7 @@ namespace Dfe.PersonsApi.Domain.Tests.Aggregates
         public void Constructor_ShouldThrowArgumentNullException_WhenMemberIdIsNull(
             ConstituencyId constituencyId,
             string constituencyName,
+            string? constituencyPartyName,
             NameDetails nameDetails,
             DateTime lastRefresh,
             DateOnly? endDate,
@@ -37,7 +39,7 @@ namespace Dfe.PersonsApi.Domain.Tests.Aggregates
         {
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
-                new Constituency(constituencyId, null!, constituencyName, nameDetails, lastRefresh, endDate, memberContactDetails));
+                new Constituency(constituencyId, null!, constituencyName, constituencyPartyName, nameDetails, lastRefresh, endDate, memberContactDetails));
 
             Assert.Equal("memberId", exception.ParamName);
         }
@@ -48,13 +50,14 @@ namespace Dfe.PersonsApi.Domain.Tests.Aggregates
             ConstituencyId constituencyId,
             MemberId memberId,
             string constituencyName,
+            string? constituencyPartyName,
             DateTime lastRefresh,
             DateOnly? endDate,
             MemberContactDetails memberContactDetails)
         {
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() =>
-                new Constituency(constituencyId, memberId, constituencyName, null!, lastRefresh, endDate, memberContactDetails));
+                new Constituency(constituencyId, memberId, constituencyName, constituencyPartyName, null!, lastRefresh, endDate, memberContactDetails));
 
             Assert.Equal("nameDetails", exception.ParamName);
         }

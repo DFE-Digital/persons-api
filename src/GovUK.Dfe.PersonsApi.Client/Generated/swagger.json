@@ -215,6 +215,10 @@
             "properties": {
               "constituencyName": {
                 "type": "string"
+              },
+              "constituencyPartyName": {
+                "type": "string",
+                "nullable": true
               }
             }
           }

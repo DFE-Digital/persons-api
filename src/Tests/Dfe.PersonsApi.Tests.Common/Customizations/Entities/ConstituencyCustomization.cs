@@ -22,6 +22,7 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations.Entities
                     constituencyId,
                     memberId,
                     fixture.Create<string>(),
+                    fixture.Create<string>(),
                     nameDetails,
                     fixture.Create<DateTime>(),
                     DateOnly.FromDateTime(fixture.Create<DateTime>().Date),

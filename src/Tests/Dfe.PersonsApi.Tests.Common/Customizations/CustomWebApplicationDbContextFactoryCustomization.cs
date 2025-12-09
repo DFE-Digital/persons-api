@@ -255,6 +255,7 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations
                 new ConstituencyId(1),
                 new MemberId(1),
                 "Test Constituency 1",
+                "Test Constituency Party 1",
                 new NameDetails(
                     "Wood, John",
                     "John Wood",
@@ -269,6 +270,7 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations
                 new ConstituencyId(2),
                 new MemberId(2),
                 "Test Constituency 2",
+                "Test Constituency Party 2",
                 new NameDetails(
                     "Wood, Joe",
                     "Joe Wood",
