@@ -10,9 +10,8 @@ namespace Dfe.PersonsApi.Domain.Constituencies
         public ConstituencyId Id { get; }
         public MemberId MemberId { get; private set; }
         public string ConstituencyName { get; private set; }
-
-        [NotMapped]
-        public string? ConstituencyPartyName { get; private set; }
+        
+        public string? PartyName { get; private set; }
 
         public NameDetails NameDetails { get; private set; }
         public DateTime LastRefresh { get; private set; }
@@ -34,7 +33,7 @@ namespace Dfe.PersonsApi.Domain.Constituencies
             Id = constituencyId ?? throw new ArgumentNullException(nameof(constituencyId));
             MemberId = memberId ?? throw new ArgumentNullException(nameof(memberId));
             ConstituencyName = constituencyName;
-            ConstituencyPartyName = constituencyPartyName;
+            PartyName = constituencyPartyName;
             NameDetails = nameDetails ?? throw new ArgumentNullException(nameof(nameDetails));
             LastRefresh = lastRefresh;
             EndDate = endDate;

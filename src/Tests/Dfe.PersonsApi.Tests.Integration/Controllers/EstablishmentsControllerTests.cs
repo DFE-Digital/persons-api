@@ -94,7 +94,9 @@ namespace Dfe.PersonsApi.PersonsApi.Tests.Integration.Controllers
                      .SetProperty(p => p.ParliamentaryConstituency, "Test Constituency 44"));
 
             await mopDbContext.Constituencies.Where(x => x.ConstituencyName == "Test Constituency 1")
-                .ExecuteUpdateAsync(x => x.SetProperty(p => p.ConstituencyName, "Test Constituency 44"));
+                .ExecuteUpdateAsync(x => x
+                .SetProperty(p => p.ConstituencyName, "Test Constituency 44")
+                .SetProperty(p => p.PartyName, "Test Constituency Party 1"));
 
             // Act
             var result = await establishmentsClient.GetMemberOfParliamentBySchoolUrnAsync(44);
@@ -102,6 +104,7 @@ namespace Dfe.PersonsApi.PersonsApi.Tests.Integration.Controllers
             // Assert
             Assert.NotNull(result);
             Assert.Equal("Test Constituency 44", result.ConstituencyName);
+            Assert.Equal("Test Constituency Party 1", result.ConstituencyPartyName);
 
         }
 

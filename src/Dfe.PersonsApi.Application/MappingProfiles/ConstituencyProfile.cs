@@ -19,7 +19,7 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.LastRefresh))
                 .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.MemberContactDetails.Phone))
                 .ForMember(dest => dest.ConstituencyName, opt => opt.MapFrom(src => src.ConstituencyName))
-                .ForMember(dest => dest.ConstituencyPartyName, opt => opt.MapFrom(src => src.ConstituencyPartyName));
+                .ForMember(dest => dest.ConstituencyPartyName, opt => opt.MapFrom(src => src.PartyName));
         }
     }
 }
