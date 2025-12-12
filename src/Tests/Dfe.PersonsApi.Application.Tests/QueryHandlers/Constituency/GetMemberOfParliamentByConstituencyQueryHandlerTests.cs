@@ -19,6 +19,7 @@ namespace Dfe.PersonsApi.Application.Tests.QueryHandlers.Constituency
         [Theory]
         [CustomAutoData(
             typeof(MemberOfParliamentCustomization),
+            typeof(DateOnlyCustomization),
             typeof(ConstituencyCustomization),
             typeof(AutoMapperCustomization<ConstituencyProfile>))]
         public async Task Handle_ShouldReturnMemberOfParliament_WhenConstituencyExists(

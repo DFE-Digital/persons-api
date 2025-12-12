@@ -6,6 +6,7 @@ namespace Dfe.PersonsApi.Testing.Common.Customizations.Models
     public class MemberOfParliamentCustomization : ICustomization
     {
         public string? ConstituencyName { get; set; }
+        public string? ConstituencyPartyName { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
@@ -24,7 +25,8 @@ namespace Dfe.PersonsApi.Testing.Common.Customizations.Models
                 .With(x => x.DisplayName, DisplayName ?? fixture.Create<string>())
                 .With(x => x.DisplayNameWithTitle, DisplayNameWithTitle ?? fixture.Create<string>())
                 .With(x => x.Roles, Roles ?? fixture.Create<List<string>>())
-                .With(x => x.UpdatedAt, UpdatedAt ?? fixture.Create<DateTime>()));
+                .With(x => x.UpdatedAt, UpdatedAt ?? fixture.Create<DateTime>())
+                .With(x => x.ConstituencyPartyName, ConstituencyPartyName ?? fixture.Create<string>()));
         }
     }
 }
