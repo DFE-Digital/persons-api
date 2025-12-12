@@ -1,9 +1,11 @@
 ﻿using Dfe.PersonsApi.Domain.Common;
 using Dfe.PersonsApi.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Domain.Constituencies
 {
+    [ExcludeFromCodeCoverage]
 #pragma warning disable CS8618
     public class Constituency : IAggregateRoot
     {
