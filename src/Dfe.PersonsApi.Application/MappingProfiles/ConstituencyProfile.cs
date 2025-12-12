@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Domain.Constituencies;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Application.MappingProfiles
 {
+    [ExcludeFromCodeCoverage]
     public class ConstituencyProfile : Profile
     {
         public ConstituencyProfile()
