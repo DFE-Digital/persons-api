@@ -29,31 +29,24 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         public void Should_Map_Constituency_To_MemberOfParliament()
         {
             // Arrange
-            var memberId = new MemberId(123);
+            var memberId = _fixture.Create<MemberId>();
             var constituency = _fixture.Build<Constituency>()
-                .With(c => c.MemberId, memberId)
-                .With(c => c.NameDetails, new NameDetails(
-                    NameListAs: "Doe, John",
-                    NameDisplayAs: "John Doe MP",
-                    NameFullTitle: "Rt Hon John Doe MP"
-                ))
-                .With(c => c.MemberContactDetails, new MemberContactDetails(
-                    memberId: memberId,
-                    typeId: 1,
-                    email: "john.doe@test.com",
-                    phone: "01234 567890"
-                ))
-                .With(c => c.LastRefresh, new DateTime(2025, 1, 15, 0, 0, 0, DateTimeKind.Utc))
-                .With(c => c.ConstituencyName, "Bristol North")
-                .With(c => c.PartyName, "Independent Party")
-                .Create();
+            .Without(c => c.ConstituencyName)   // Stops AutoFixture overriding
+            .Without(c => c.PartyName)
+            .With(c => c.MemberId, memberId)
+            .With(c => c.NameDetails, new NameDetails("Doe, John", "John Doe MP", "Rt Hon John Doe MP"))
+            .With(c => c.MemberContactDetails, new MemberContactDetails(memberId, 1, "john.doe@test.com", "01234 567890"))
+            .With(c => c.LastRefresh, new DateTime(2025, 1, 15, 0, 0, 0, DateTimeKind.Utc))
+            .With(c => c.ConstituencyName, "Bristol North")
+            .With(c => c.PartyName, "Independent Party")
+            .Create();
 
             // Act
             var result = _mapper.Map<MemberOfParliament>(constituency);
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(123, result.Id);
+            Assert.Equal(memberId.Value, result.Id);
             Assert.Equal("John", result.FirstName);            
             Assert.Equal("Doe", result.LastName);
             Assert.Equal("john.doe@test.com", result.Email);
@@ -68,30 +61,22 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
         public void Map_WhenConstituencyHasNullValues_ShouldHandleNullsCorrectly()
         {
             // Arrange
-
-            var memberId = new MemberId(123);
+            var memberId = _fixture.Create<MemberId>();
             var constituency = _fixture.Build<Constituency>()
-                .With(c => c.MemberId, memberId)
-                .With(c => c.NameDetails, new NameDetails(
-                    NameListAs: "Doe, John",
-                    NameDisplayAs: "John Doe MP",
-                    NameFullTitle: "Rt Hon John Doe MP"
-                ))                
-                .With(c => c.LastRefresh, new DateTime(2025, 1, 15, 0, 0, 0, DateTimeKind.Utc))
-                .With(c => c.ConstituencyName, "Bristol North")                
-                .Create();
-
-
-            constituency.PartyName = null;
-            constituency.MemberContactDetails = null!;
-            constituency.EndDate = null;
+            .Without(c => c.MemberContactDetails)
+            .Without(c => c.PartyName)
+            .With(c => c.MemberId, memberId)
+            .With(c => c.NameDetails, new NameDetails("Doe, John", "John Doe MP", "Rt Hon John Doe MP"))
+            .With(c => c.LastRefresh, new DateTime(2025, 1, 15, 0, 0, 0, DateTimeKind.Utc))
+            .With(c => c.ConstituencyName, "Bristol North")
+            .Create();           
 
             // Act
             var result = _mapper.Map<MemberOfParliament>(constituency);
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(123, result.Id);
+            Assert.Equal(memberId.Value, result.Id);
             Assert.Equal("John", result.FirstName);
             Assert.Equal("Doe", result.LastName);
             Assert.Null(result.Email);
