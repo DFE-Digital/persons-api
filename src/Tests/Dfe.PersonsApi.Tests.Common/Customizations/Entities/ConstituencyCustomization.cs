@@ -8,26 +8,34 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations.Entities
     {
         public void Customize(IFixture fixture)
         {
-            fixture.Customize<Constituency>(composer => composer.FromFactory(() =>
+            fixture.Register(() =>
             {
-                var constituencyId = fixture.Create<ConstituencyId>();
-                var memberId = fixture.Create<MemberId>();
                 var nameDetails = new NameDetails(
                     "Doe, John",
                     "John Doe",
                     "Mr. John Doe MP"
                 );
 
-                return new Constituency(
-                    constituencyId,
+                var memberId = fixture.Create<MemberId>();
+                var memberContactDetails = new MemberContactDetails(
                     memberId,
+                    1,
                     fixture.Create<string>(),
-                    nameDetails,
-                    fixture.Create<DateTime>(),
-                    DateOnly.FromDateTime(fixture.Create<DateTime>().Date),
-                    fixture.Create<MemberContactDetails>()
+                    fixture.Create<string>()
                 );
-            }));
+
+                return new Constituency
+                {
+                    Id = fixture.Create<ConstituencyId>(),
+                    MemberId = memberId,
+                    NameDetails = nameDetails,
+                    ConstituencyName = fixture.Create<string>(),
+                    PartyName = fixture.Create<string>(),
+                    EndDate = DateOnly.FromDateTime(fixture.Create<DateTime>().Date),
+                    LastRefresh = fixture.Create<DateTime>(),
+                    MemberContactDetails = memberContactDetails
+                };
+            });
         }
     }
 }

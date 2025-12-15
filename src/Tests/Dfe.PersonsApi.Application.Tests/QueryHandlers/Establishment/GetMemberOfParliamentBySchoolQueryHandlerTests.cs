@@ -20,6 +20,7 @@ namespace Dfe.PersonsApi.Application.Tests.QueryHandlers.Establishment
         [CustomAutoData(
             typeof(MemberOfParliamentCustomization),
             typeof(ConstituencyCustomization),
+            typeof(DateOnlyCustomization),
             typeof(OmitCircularReferenceCustomization),
             typeof(AutoMapperCustomization<ConstituencyProfile>))]
         public async Task Handle_ShouldReturnMemberOfParliament_WhenSchoolExists(

@@ -1,38 +1,19 @@
 ﻿using Dfe.PersonsApi.Domain.Common;
 using Dfe.PersonsApi.Domain.ValueObjects;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Domain.Constituencies
 {
-#pragma warning disable CS8618
+    [ExcludeFromCodeCoverage]
     public class Constituency : IAggregateRoot
     {
-        public ConstituencyId Id { get; }
-        public MemberId MemberId { get; private set; }
-        public string ConstituencyName { get; private set; }
-        public NameDetails NameDetails { get; private set; }
-        public DateTime LastRefresh { get; private set; }
-        public DateOnly? EndDate { get; private set; }
-
-        public virtual MemberContactDetails MemberContactDetails { get; private set; }
-        public Constituency() { }
-
-        public Constituency(
-            ConstituencyId constituencyId,
-            MemberId memberId,
-            string constituencyName,
-            NameDetails nameDetails,
-            DateTime lastRefresh,
-            DateOnly? endDate,
-            MemberContactDetails memberContactDetails)
-        {
-            Id = constituencyId ?? throw new ArgumentNullException(nameof(constituencyId));
-            MemberId = memberId ?? throw new ArgumentNullException(nameof(memberId));
-            ConstituencyName = constituencyName;
-            NameDetails = nameDetails ?? throw new ArgumentNullException(nameof(nameDetails));
-            LastRefresh = lastRefresh;
-            EndDate = endDate;
-            MemberContactDetails = memberContactDetails;
-        }
+        public ConstituencyId Id { get; set; }
+        public MemberId MemberId { get; set; }
+        public string ConstituencyName { get; set; }        
+        public string? PartyName { get; set; }
+        public NameDetails NameDetails { get; set; }
+        public DateTime LastRefresh { get; set; }
+        public DateOnly? EndDate { get; set; }
+        public virtual MemberContactDetails MemberContactDetails { get; set; }       
     }
-#pragma warning restore CS8618
 }

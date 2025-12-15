@@ -128,6 +128,9 @@ namespace GovUK.Dfe.PersonsApi.Client.Contracts
         [Newtonsoft.Json.JsonProperty("constituencyName", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ConstituencyName { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("constituencyPartyName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string ConstituencyPartyName { get; set; }
+
         public string ToJson()
         {
 

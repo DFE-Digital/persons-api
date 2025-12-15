@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Dfe.PersonsApi.Application.Common.Models;
 using Dfe.PersonsApi.Domain.Constituencies;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dfe.PersonsApi.Application.MappingProfiles
 {
+    [ExcludeFromCodeCoverage]
     public class ConstituencyProfile : Profile
     {
         public ConstituencyProfile()
@@ -18,7 +20,8 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => new List<string> { "Member of Parliament" }))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.LastRefresh))
                 .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.MemberContactDetails.Phone))
-                .ForMember(dest => dest.ConstituencyName, opt => opt.MapFrom(src => src.ConstituencyName));
+                .ForMember(dest => dest.ConstituencyName, opt => opt.MapFrom(src => src.ConstituencyName))
+                .ForMember(dest => dest.ConstituencyPartyName, opt => opt.MapFrom(src => src.PartyName));
         }
     }
 }

@@ -251,33 +251,37 @@ namespace Dfe.PersonsApi.Tests.Common.Customizations
                 null
             );
 
-            var constituency1 = new Constituency(
-                new ConstituencyId(1),
-                new MemberId(1),
-                "Test Constituency 1",
-                new NameDetails(
-                    "Wood, John",
-                    "John Wood",
-                    "Mr. John Wood MP"
-                ),
-                DateTime.UtcNow,
-                null,
-                memberContact1
-            );
+            var constituency1 = new Constituency()
+            {
+                Id = new ConstituencyId(1),
+                MemberId = new MemberId(1),
+                ConstituencyName = "Test Constituency 1",
+                PartyName = "Test Constituency Party 1",
+                NameDetails = new NameDetails(
+                   "Wood, John",
+                   "John Wood",
+                   "Mr. John Wood MP"
+               ),
+                LastRefresh = DateTime.UtcNow,
+                EndDate = null,
+                MemberContactDetails = memberContact1
+            };
 
-            var constituency2 = new Constituency(
-                new ConstituencyId(2),
-                new MemberId(2),
-                "Test Constituency 2",
-                new NameDetails(
+            var constituency2 = new Constituency()
+            {
+                Id = new ConstituencyId(2),
+                MemberId = new MemberId(2),
+                ConstituencyName = "Test Constituency 2",
+                PartyName = "Test Constituency Party 2",
+                NameDetails = new NameDetails(
                     "Wood, Joe",
                     "Joe Wood",
                     "Mr. Joe Wood MP"
                 ),
-                DateTime.UtcNow,
-                null,
-                memberContact2
-            );
+                LastRefresh = DateTime.UtcNow,
+                EndDate = null,
+                MemberContactDetails = memberContact2
+            };
 
             mopContext.Constituencies.Add(constituency1);
             mopContext.Constituencies.Add(constituency2);
