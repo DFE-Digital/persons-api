@@ -22,8 +22,8 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.TrustGovernance.Modified))
                 .ForMember(dest => dest.Phone, opt => opt.Ignore())
                 .ForMember(dest => dest.DateOfAppointment, opt => opt.MapFrom(src => src.TrustGovernance.DateOfAppointment))
-                .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.TrustGovernance.DateTermOfOfficeEndsOrEnded));
-
+                .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.TrustGovernance.DateTermOfOfficeEndsOrEnded))
+                .ForMember(dest => dest.AppointingBody, opt => opt.MapFrom(src => src.TrustGovernance.AppointingBody));
         }
     }
 }
