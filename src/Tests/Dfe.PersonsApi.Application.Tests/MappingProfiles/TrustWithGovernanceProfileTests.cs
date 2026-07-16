@@ -47,6 +47,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             var expectedUpdatedAt = source.TrustGovernance.Modified;
             var expectedDateOfAppointment = source.TrustGovernance.DateOfAppointment;
             var expectedDateTermOfOfficeEndsEnded = source.TrustGovernance.DateTermOfOfficeEndsOrEnded;
+            var appointingBody = source.TrustGovernance.AppointingBody;
 
             // Act
             var result = _mapper.Map<Application.Common.Models.TrustGovernance>(source);
@@ -65,6 +66,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().Be(expectedUpdatedAt);
             result.DateOfAppointment.Should().Be(expectedDateOfAppointment);
             result.DateTermOfOfficeEndsEnded.Should().Be(expectedDateTermOfOfficeEndsEnded);
+            result.AppointingBody.Should().Be(appointingBody);
         }
 
         [Fact]
@@ -87,7 +89,8 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
                 Email = null,
                 Modified = null,
                 DateOfAppointment = null,
-                DateTermOfOfficeEndsOrEnded = null
+                DateTermOfOfficeEndsOrEnded = null,
+                AppointingBody = null
             };
 
             var governanceRoleType = new GovernanceRoleType
@@ -116,6 +119,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.DateOfAppointment.Should().BeNull();
             result.DateTermOfOfficeEndsEnded.Should().BeNull();
             result.Phone.Should().BeNull();
+            result.AppointingBody.Should().BeNull();
         }
 
         [Fact]

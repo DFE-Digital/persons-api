@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "e13d9521-e827-4d43-99a3-05cb5eb87348",
+		"name": "PersonsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37080380"
+	},
+	"item": [
+		{
+			"name": "Dev",
+			"item": [
+				{
+					"name": "GetMPByConstituency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Constituencies/{{constituencyName}}/mp",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"{{constituencyName}}",
+								"mp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMPBySchool",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Establishments/{{urn}}/GetMPBySchool",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Establishments",
+								"{{urn}}",
+								"GetMPBySchool"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssociatedPersonsWithAcademy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Establishments/{{urn}}/getAssociatedPersons",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Establishments",
+								"{{urn}}",
+								"getAssociatedPersons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssociatedPersonsWithTrust",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Trusts/{{trn_ukprn}}/getAssociatedPersons",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Trusts",
+								"{{trn_ukprn}}",
+								"getAssociatedPersons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMpsByConstuencies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"constituencyNames\": [\r\n    \"Aberdeen North\",\r\n    \"East Ham\",\r\n    \"Halifax\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Constituencies/mps",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"mps"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "GetMPByConstituency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Constituencies/{{constituencyName}}/mp",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"{{constituencyName}}",
+								"mp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMPBySchool",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Establishments/{{urn}}/GetMPBySchool",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Establishments",
+								"{{urn}}",
+								"GetMPBySchool"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssociatedPersonsWithAcademy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Establishments/{{urn}}/getAssociatedPersons",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Establishments",
+								"{{urn}}",
+								"getAssociatedPersons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssociatedPersonsWithTrust",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Trusts/{{trn_ukprn}}/getAssociatedPersons",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Trusts",
+								"{{trn_ukprn}}",
+								"getAssociatedPersons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMpsByConstuencies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"constituencyNames\": [\r\n    \"Aberdeen North\",\r\n    \"East Ham\",\r\n    \"Halifax\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Constituencies/mps",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"mps"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenType",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": true,
+				"type": "boolean"
+			},
+			{
+				"key": "scope",
+				"value": "{{Scope}}",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/callback",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{Secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{ClientId}}",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://login.microsoftonline.com/9c7d9dd3-840c-4b3f-818e-552865082e16/oauth2/v2.0/authorize",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://login.microsoftonline.com/9c7d9dd3-840c-4b3f-818e-552865082e16/oauth2/v2.0/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "constituencyName",
+			"value": "Aberdeen North",
+			"type": "default"
+		},
+		{
+			"key": "urn",
+			"value": "100006",
+			"type": "default"
+		},
+		{
+			"key": "trn_ukprn",
+			"value": "TR00020",
+			"type": "default"
+		}
+	]
+}
