@@ -22,7 +22,8 @@ namespace Dfe.PersonsApi.Application.MappingProfiles
                 .ForMember(dest => dest.URN, opt => opt.MapFrom(src => src.Establishment.URN))
                 .ForMember(dest => dest.UKPRN, opt => opt.MapFrom(src => src.Establishment.UKPRN))
                 .ForMember(dest => dest.DateOfAppointment, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.DateOfAppointment))
-                .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.DateTermOfOfficeEndsEnded));
+                .ForMember(dest => dest.DateTermOfOfficeEndsEnded, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.DateTermOfOfficeEndsEnded))
+                .ForMember(dest => dest.AppointingBody, opt => opt.MapFrom(src => src.EducationEstablishmentGovernance.AppointingBody));
         }
     }
 }

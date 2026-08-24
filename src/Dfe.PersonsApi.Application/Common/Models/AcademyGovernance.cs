@@ -6,5 +6,6 @@
         public int? URN { get; set; }
         public string? DateOfAppointment { get; set; }
         public string? DateTermOfOfficeEndsEnded { get; set; }
+        public string? AppointingBody { get; set; }
     }
 }

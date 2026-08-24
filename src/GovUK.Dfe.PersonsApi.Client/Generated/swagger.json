@@ -302,6 +302,10 @@
               "dateTermOfOfficeEndsEnded": {
                 "type": "string",
                 "nullable": true
+              },
+              "appointingBody": {
+                "type": "string",
+                "nullable": true
               }
             }
           }
