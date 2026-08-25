@@ -22,6 +22,9 @@ jobs:
 
   pack-and-release:
     needs: build-and-test
+    permissions:
+      contents: write
+      packages: read
     if: needs.build-and-test.result == 'success'
     uses: ./.github/workflows/pack-template.yml
     with:
