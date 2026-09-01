@@ -227,9 +227,6 @@ namespace GovUK.Dfe.PersonsApi.Client.Contracts
         [Newtonsoft.Json.JsonProperty("dateTermOfOfficeEndsEnded", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string DateTermOfOfficeEndsEnded { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("appointingBody", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string AppointingBody { get; set; }
-
         public string ToJson()
         {
 
