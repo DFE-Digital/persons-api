@@ -30,11 +30,10 @@ namespace Dfe.PersonsApi.Application.Establishment.Queries.GetAllPersonsAssociat
                     return Result<List<AcademyGovernance>?>.Failure("Academy not found.");
                 }
 
-                var result = Result<List<AcademyGovernance>?>.Success(await query
+                return Result<List<AcademyGovernance>?>.Success(await query
                     .ProjectTo<AcademyGovernance>(mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken));
-
-                return result;
+                
             }, nameof(GetAllPersonsAssociatedWithAcademyByUrnQueryHandler));
         }
     }
