@@ -4,12 +4,13 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "src/GovUK.Dfe.PersonsApi.Client/**"
+#      - "src/GovUK.Dfe.PersonsApi.Client/**"
+      - "src/**"
   pull_request:
     branches: [ main ]
     paths:
-      - "src/GovUK.Dfe.PersonsApi.Client/**"
-
+#      - "src/GovUK.Dfe.PersonsApi.Client/**"
+      - "src/**"
 jobs:
   build-and-test:
     uses: ./.github/workflows/build-test-template.yml

@@ -46,7 +46,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             var expectedDateTermOfOfficeEndsEnded = source.EducationEstablishmentGovernance.DateTermOfOfficeEndsEnded;
             var expectedURN = source.Establishment.URN;
             var expectedUKPRN = source.Establishment.UKPRN;
-            // var expectedAppointingBody = source.EducationEstablishmentGovernance.AppointingBody;
+            var expectedAppointingBody = source.EducationEstablishmentGovernance.AppointingBody;
 
             // Act
             var result = _mapper.Map<AcademyGovernance>(source);
@@ -63,7 +63,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().Be(expectedUpdatedAt);
             result.DateOfAppointment.Should().Be(expectedDateOfAppointment);
             result.DateTermOfOfficeEndsEnded.Should().Be(expectedDateTermOfOfficeEndsEnded);
-            // result.AppointingBody.Should().Be(expectedAppointingBody);
+            result.AppointingBody.Should().Be(expectedAppointingBody);
 
             // Test Academy-specific properties that were missing
             result.URN.Should().Be(expectedURN);
@@ -120,7 +120,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             result.UpdatedAt.Should().BeNull();
             result.DateOfAppointment.Should().BeNull();
             result.DateTermOfOfficeEndsEnded.Should().BeNull();
-            // result.AppointingBody.Should().BeNull();
+            result.AppointingBody.Should().BeNull();
 
             // Test establishment mappings work even with null governance values
             result.URN.Should().Be(12345);
@@ -216,7 +216,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             {
                 SK = 999,
                 URN = 54321,
-                UKPRN = "10054321"
+                UKPRN = "10054322"
             };
 
             var source = new AcademyGovernanceQueryModel(establishmentGovernance, governanceRoleType, establishment);
@@ -227,7 +227,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             // Assert
             result.Should().NotBeNull();
             result.URN.Should().Be(54321);
-            result.UKPRN.Should().Be("10054321");
+            result.UKPRN.Should().Be("10054322");
         }
 
         [Fact]
