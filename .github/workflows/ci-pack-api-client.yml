@@ -4,12 +4,13 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "src/GovUK.Dfe.PersonsApi.Client/**"
+#      - "src/GovUK.Dfe.PersonsApi.Client/**"
+      - "src/**"
   pull_request:
     branches: [ main ]
     paths:
-      - "src/GovUK.Dfe.PersonsApi.Client/**"
-
+#      - "src/GovUK.Dfe.PersonsApi.Client/**"
+      - "src/**"
 jobs:
   build-and-test:
     uses: ./.github/workflows/build-test-template.yml
@@ -24,7 +25,7 @@ jobs:
     needs: build-and-test
     permissions:
       contents: write
-      packages: read
+      packages: write
     if: needs.build-and-test.result == 'success'
     uses: ./.github/workflows/pack-template.yml
     with:

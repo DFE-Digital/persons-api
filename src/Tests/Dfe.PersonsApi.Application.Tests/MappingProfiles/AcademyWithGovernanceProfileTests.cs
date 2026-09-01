@@ -216,7 +216,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             {
                 SK = 999,
                 URN = 54321,
-                UKPRN = "10054321"
+                UKPRN = "10054322"
             };
 
             var source = new AcademyGovernanceQueryModel(establishmentGovernance, governanceRoleType, establishment);
@@ -227,7 +227,7 @@ namespace Dfe.PersonsApi.Application.Tests.MappingProfiles
             // Assert
             result.Should().NotBeNull();
             result.URN.Should().Be(54321);
-            result.UKPRN.Should().Be("10054321");
+            result.UKPRN.Should().Be("10054322");
         }
 
         [Fact]
