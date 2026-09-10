@@ -111,7 +111,7 @@ namespace Dfe.PersonsApi.Application.Tests.QueryHandlers.Constituency
         {
             var cacheKey = $"MemberOfParliamentSearch_{CacheKeyHelper.GenerateHashedCacheKey(searchTerm)}";
 
-            mockCacheService.GetOrAddAsync(cacheKey, Arg.Any<Func<Task<Result<List<MemberOfParliament>>>>>(), Arg.Any<string>())
+            mockCacheService.GetOrAddAsync(cacheKey, Arg.Any<Func<Task<Result<List<MemberOfParliament>>>>>(), Arg.Any<string>(), Arg.Any<CancellationToken>())
                 .Returns(callInfo =>
                 {
                     var callback = callInfo.ArgAt<Func<Task<Result<List<MemberOfParliament>>>>>(1);

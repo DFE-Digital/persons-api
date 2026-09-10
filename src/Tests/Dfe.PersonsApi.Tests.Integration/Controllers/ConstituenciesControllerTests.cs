@@ -172,6 +172,23 @@ namespace Dfe.PersonsApi.PersonsApi.Tests.Integration.Controllers
 
         [Theory]
         [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldMatchWildcardsLiterally_WhenSearchTermContainsThem(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            // "_" is a single character wildcard in LIKE, so unescaped this would match "Test Constituency".
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("Test_Constituency");
+
+            // Assert
+            Assert.Empty(result);
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
         public async Task SearchMembersOfParliamentAsync_ShouldReturnEmpty_WhenNothingMatches(
             CustomWebApplicationDbContextFactory<Startup> factory,
             IConstituenciesClient constituenciesClient)

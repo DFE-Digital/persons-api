@@ -32,7 +32,7 @@ namespace Dfe.PersonsApi.Application.Constituencies.Queries.SearchMembersOfParli
 
                 return Result<List<MemberOfParliament>>.Success(membersOfParliament);
 
-            }, nameof(SearchMembersOfParliamentQueryHandler));
+            }, nameof(SearchMembersOfParliamentQueryHandler), cancellationToken);
         }
     }
 }
