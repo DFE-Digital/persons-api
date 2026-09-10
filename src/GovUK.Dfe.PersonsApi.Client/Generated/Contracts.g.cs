@@ -59,6 +59,23 @@ namespace GovUK.Dfe.PersonsApi.Client.Contracts
         /// <exception cref="PersonsApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MemberOfParliament>> GetMembersOfParliamentByConstituenciesAsync(GetMembersOfParliamentByConstituenciesQuery request, System.Threading.CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Search for Members of Parliament by either their name or their constituency name
+        /// </summary>
+        /// <param name="searchTerm">A single term matched against both the Member of Parliament name and the constituency name, for example "John Moore" or "London".</param>
+        /// <returns>A collection of MemberOfParliament objects matching the search term.</returns>
+        /// <exception cref="PersonsApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MemberOfParliament>> SearchMembersOfParliamentAsync(string searchTerm);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Search for Members of Parliament by either their name or their constituency name
+        /// </summary>
+        /// <param name="searchTerm">A single term matched against both the Member of Parliament name and the constituency name, for example "John Moore" or "London".</param>
+        /// <returns>A collection of MemberOfParliament objects matching the search term.</returns>
+        /// <exception cref="PersonsApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<MemberOfParliament>> SearchMembersOfParliamentAsync(string searchTerm, System.Threading.CancellationToken cancellationToken);
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]

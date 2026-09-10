@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Microsoft.AspNetCore.Authorization;
 using Dfe.PersonsApi.Application.Constituencies.Queries.GetMemberOfParliamentByConstituencies;
+using Dfe.PersonsApi.Application.Constituencies.Queries.SearchMembersOfParliament;
 using Dfe.PersonsApi.Application.Common.Exceptions;
 using System.Net;
 
@@ -43,6 +44,21 @@ namespace PersonsApi.Controllers
         public async Task<IActionResult> GetMembersOfParliamentByConstituenciesAsync([FromBody] GetMembersOfParliamentByConstituenciesQuery request, CancellationToken cancellationToken)
         {
             var result = await sender.Send(request, cancellationToken);
+
+            return Ok(result.Value);
+        }
+
+        /// <summary>
+        /// Search for Members of Parliament by either their name or their constituency name
+        /// </summary>
+        /// <param name="searchTerm">A single term matched against both the Member of Parliament name and the constituency name, for example "John Moore" or "London".</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        [HttpGet("mps/search")]
+        [SwaggerResponse(200, "A collection of MemberOfParliament objects matching the search term.", typeof(IEnumerable<MemberOfParliament>))]
+        [SwaggerResponse(400, "Search term cannot be null or empty.")]
+        public async Task<IActionResult> SearchMembersOfParliamentAsync([FromQuery] string searchTerm, CancellationToken cancellationToken)
+        {
+            var result = await sender.Send(new SearchMembersOfParliamentQuery(searchTerm), cancellationToken);
 
             return Ok(result.Value);
         }

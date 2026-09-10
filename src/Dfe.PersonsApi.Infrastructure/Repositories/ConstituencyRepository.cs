@@ -26,5 +26,21 @@ namespace Dfe.PersonsApi.Infrastructure.Repositories
                             && c.MemberContactDetails.TypeId == 1
                             && !c.EndDate.HasValue);
         }
+
+        public IQueryable<Constituency> SearchMembersOfParliamentQueryable(string searchTerm)
+        {
+            // Lowered on both sides so matching stays case insensitive regardless of database collation.
+            var normalisedSearchTerm = searchTerm.Trim().ToLower();
+
+            return context.Constituencies
+                .AsNoTracking()
+                .Include(c => c.MemberContactDetails)
+                .Where(c => c.MemberContactDetails.TypeId == 1
+                            && !c.EndDate.HasValue
+                            && (c.ConstituencyName.ToLower().Contains(normalisedSearchTerm)
+                                || c.NameDetails.NameDisplayAs.ToLower().Contains(normalisedSearchTerm)
+                                || c.NameDetails.NameListAs.ToLower().Contains(normalisedSearchTerm)))
+                .OrderBy(c => c.ConstituencyName);
+        }
     }
 }
