@@ -115,5 +115,109 @@ namespace Dfe.PersonsApi.PersonsApi.Tests.Integration.Controllers
 
             Assert.Equal(HttpStatusCode.BadRequest, (HttpStatusCode)exception.StatusCode);
         }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldReturnMp_WhenSearchTermMatchesTheMemberName(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("John Wood");
+
+            // Assert
+            var memberOfParliament = Assert.Single(result);
+            Assert.Equal("John", memberOfParliament.FirstName);
+            Assert.Equal("Wood", memberOfParliament.LastName);
+            Assert.Equal("Test Constituency 1", memberOfParliament.ConstituencyName);
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldReturnMp_WhenSearchTermMatchesTheSurnameOnly(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("Wood");
+
+            // Assert
+            Assert.Equal(2, result.Count);
+            Assert.All(result, memberOfParliament => Assert.Equal("Wood", memberOfParliament.LastName));
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldReturnMps_WhenSearchTermMatchesTheConstituencyNameRegardlessOfCasing(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("test constituency 2");
+
+            // Assert
+            var memberOfParliament = Assert.Single(result);
+            Assert.Equal("Test Constituency 2", memberOfParliament.ConstituencyName);
+            Assert.Equal("Joe", memberOfParliament.FirstName);
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldMatchWildcardsLiterally_WhenSearchTermContainsThem(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            // "_" is a single character wildcard in LIKE, so unescaped this would match "Test Constituency".
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("Test_Constituency");
+
+            // Assert
+            Assert.Empty(result);
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldReturnEmpty_WhenNothingMatches(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act
+            var result = await constituenciesClient.SearchMembersOfParliamentAsync("NoSuchMemberOrConstituency");
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Empty(result);
+        }
+
+        [Theory]
+        [CustomAutoData(typeof(CustomWebApplicationDbContextFactoryCustomization<Startup>))]
+        public async Task SearchMembersOfParliamentAsync_ShouldThrowAnException_WhenSearchTermNotProvided(
+            CustomWebApplicationDbContextFactory<Startup> factory,
+            IConstituenciesClient constituenciesClient)
+        {
+            // Arrange
+            factory.TestClaims = [new Claim(ClaimTypes.Role, "API.Read")];
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<PersonsApiException>(async () =>
+                await constituenciesClient.SearchMembersOfParliamentAsync(" "));
+
+            Assert.Equal(HttpStatusCode.BadRequest, (HttpStatusCode)exception.StatusCode);
+        }
     }
 }

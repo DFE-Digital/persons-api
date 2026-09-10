@@ -26,5 +26,30 @@ namespace Dfe.PersonsApi.Infrastructure.Repositories
                             && c.MemberContactDetails.TypeId == 1
                             && !c.EndDate.HasValue);
         }
+
+        public IQueryable<Constituency> SearchMembersOfParliamentQueryable(string searchTerm)
+        {
+            // Lowered on both sides so matching stays case insensitive regardless of database collation.
+            var pattern = $"%{EscapeLikeWildcards(searchTerm.Trim().ToLower())}%";
+
+            return context.Constituencies
+                .AsNoTracking()
+                .Include(c => c.MemberContactDetails)
+                .Where(c => c.MemberContactDetails.TypeId == 1
+                            && !c.EndDate.HasValue
+                            && (EF.Functions.Like(c.ConstituencyName.ToLower(), pattern, LikeEscapeCharacter)
+                                || EF.Functions.Like(c.NameDetails.NameDisplayAs.ToLower(), pattern, LikeEscapeCharacter)
+                                || EF.Functions.Like(c.NameDetails.NameListAs.ToLower(), pattern, LikeEscapeCharacter)))
+                .OrderBy(c => c.ConstituencyName);
+        }
+
+        private const string LikeEscapeCharacter = "\\";
+
+        // Wildcards typed by the caller are matched literally rather than treated as LIKE patterns.
+        private static string EscapeLikeWildcards(string searchTerm) =>
+            searchTerm
+                .Replace(LikeEscapeCharacter, LikeEscapeCharacter + LikeEscapeCharacter, StringComparison.Ordinal)
+                .Replace("%", $"{LikeEscapeCharacter}%", StringComparison.Ordinal)
+                .Replace("_", $"{LikeEscapeCharacter}_", StringComparison.Ordinal);
     }
 }

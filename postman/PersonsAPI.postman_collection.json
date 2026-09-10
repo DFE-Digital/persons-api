@@ -136,6 +136,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "SearchMps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184d01-rsd-frontdoor-persons-api-h8cndgfchzh5gjgr.a03.azurefd.net/v1/Constituencies/mps/search?searchTerm={{searchTerm}}",
+							"protocol": "https",
+							"host": [
+								"s184d01-tramsapicdnendpoint-personsapi-a3d9cpcwahc6dnh0",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"mps",
+								"search"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "{{searchTerm}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -265,6 +295,36 @@
 								"v1",
 								"Constituencies",
 								"mps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchMps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://s184t01-rsd-frontdoor-persons-api-dueghychhjcrefd2.a01.azurefd.net/v1/Constituencies/mps/search?searchTerm={{searchTerm}}",
+							"protocol": "https",
+							"host": [
+								"s184t01-tramsapicdnendpoint-personsapi-hwcbgdh4a8c2dhb5",
+								"z01",
+								"azurefd",
+								"net"
+							],
+							"path": [
+								"v1",
+								"Constituencies",
+								"mps",
+								"search"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "{{searchTerm}}"
+								}
 							]
 						}
 					},
