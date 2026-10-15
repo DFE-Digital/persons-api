@@ -6,6 +6,7 @@ namespace Dfe.PersonsApi.Domain.Interfaces.Repositories
     {
         Task<Constituency?> GetMemberOfParliamentByConstituencyAsync(string constituencyName, CancellationToken cancellationToken);
         IQueryable<Constituency> GetMembersOfParliamentByConstituenciesQueryable(List<string> constituencyNames);
+        IQueryable<Constituency> SearchMembersOfParliamentQueryable(string searchTerm);
 
     }
 }

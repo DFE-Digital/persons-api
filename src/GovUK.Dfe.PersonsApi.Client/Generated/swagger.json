@@ -85,6 +85,44 @@
         }
       }
     },
+    "/v1/Constituencies/mps/search": {
+      "get": {
+        "tags": [
+          "Constituencies"
+        ],
+        "summary": "Search for Members of Parliament by either their name or their constituency name",
+        "operationId": "Constituencies_SearchMembersOfParliament",
+        "parameters": [
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "description": "A single term matched against both the Member of Parliament name and the constituency name, for example \"John Moore\" or \"London\".",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A collection of MemberOfParliament objects matching the search term.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberOfParliament"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Search term cannot be null or empty."
+          }
+        }
+      }
+    },
     "/v1/Establishments/{urn}/getAssociatedPersons": {
       "get": {
         "tags": [
