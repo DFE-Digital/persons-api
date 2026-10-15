@@ -24,10 +24,11 @@ jobs:
     permissions:
       contents: write
       packages: write
+      id-token: write
     if: needs.build-and-test.result == 'success'
     uses: ./.github/workflows/pack-template.yml
     with:
       project_name: GovUK.Dfe.PersonsApi.Client
       project_path: src/GovUK.Dfe.PersonsApi.Client/GovUK.Dfe.PersonsApi.Client.csproj
     secrets:
-      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }} 
+      NUGET_USER: ${{ secrets.NUGET_USER }}
